@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.Arrays;
+public class makeSiro {
+	public static boolean checkSnt(int a) {
+		if(a<2) return false;
+		else {
+			for(int i =2; i<Math.sqrt(a) ; i++) {
+				if(a%i==0) {
+					return true;
+				}
+			}
+		}
+		return true;
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println(" nhap so luong phan tu: ");
+		int n = sc.nextInt();
+		long a[] = new long[n];
+		for(int i =0; i<n; i++) {
+			a[i] = sc.nextLong();
+		}
+		Arrays.sort(a);
+		int tmp =0;
+		int cnt =1;
+		for(int  i = 1; i<n; i++) {
+			if(a[i]==a[i-1])
+				cnt++;
+			else{
+				if(checkSnt(cnt)) {
+					tmp++;
+				}
+				cnt = 1;
+			}
+		}
+		if(checkSnt(cnt)) {
+			tmp++;
+		}
+		System.out.println(tmp);
+	}
+	// test: 1 5 4 2 2 5 3 5 5 
+	// result: 2
+}
