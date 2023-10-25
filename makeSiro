@@ -1,0 +1,28 @@
+import java.util.Scanner;
+public class makeSiro{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int a,b,c;
+	    int n,m,k,q;
+	    System.out.println("lemon: ");
+	    a = sc.nextInt();
+	    System.out.println("apple: ");
+	    b = sc.nextInt();
+	    System.out.println("pear: ");
+	    c = sc.nextInt();
+	    int t;
+	    n=b/2;
+	    m=c/4;
+	    if(n<1||m<1)
+	    {
+	    	System.out.println("0");
+	    }
+	    else if (n>=1&&m>=1)
+	    {
+	        k= Math.min(a,n);
+	        q= Math.min(k,m);
+	        t=7*q;
+	        System.out.println("tong so trai cay toi da la: " + t);
+	    }
+	}
+}
