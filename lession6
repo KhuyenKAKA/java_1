@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class lession6 {
+    public static int count(int n){
+        int cnt = 0;
+        while(n != 0){
+           n/=10;
+           cnt++;
+        }
+        return cnt;
+    }
+    public static int result(int a, int b){
+        int res = 0;
+        for(int i = a; i <= b; i++){
+           res += count(i);
+        }
+        return res;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a,b;
+        System.out.println("Enter a, b : ");
+        a = sc.nextInt();
+        b = sc.nextInt();
+         if(a<b){
+           System.out.print( result(a,b));
+         }else{
+            System.out.print( result(b,a));
+         }
+    }
+}
