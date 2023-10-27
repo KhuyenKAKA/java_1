@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+public class tests {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n;
+		do {
+			System.out.println("Enter n: ");
+			n = sc.nextInt();
+		} while (n <= 0 || n > 3000);
+
+		int a[] = new int[n];
+		System.out.println("Enter indexes of n tests: ");
+		for (int i = 0; i < n; i++) {
+			do {
+				System.out.println("Enter a[" + i + "]: ");
+				a[i] = sc.nextInt();
+			} while (a[i] <= 0 || a[i] > 3000);
+		}
+		int b[] = new int[3000];
+		for (int i = 0; i < n; i++) {
+			b[a[i]] = 1;
+		}
+		for (int i = 1; i < 3001; i++) {
+			if (b[i] == 0) {
+				System.out.println("Next test's index: " + i);
+				break;
+			}
+		}
+	}
+}
