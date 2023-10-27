@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class lession_5 {
+    public static int total(int n) {
+        int sum = 0;
+        while (n != 0) {
+            sum += n%10;
+            n /= 10;
+        }
+        return sum;
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int k;
+      do {
+    	   k = sc.nextInt();
+      }while(k <= 0 || k > 10000);
+       if(total(k) > 9){
+        System.out.println("Not found");
+       }
+       else {
+           int c = 10 - total(k);
+           System.out.println("Perfect number is " + (k*10 + c));
+       }
+    }
+}
