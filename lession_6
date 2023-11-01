@@ -1,0 +1,86 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class lession5 {
+	public static long total(int a[], int n) {
+		long sum = 0;
+		for (int i = 0; i < n; i++) {
+			sum += a[i];
+		}
+		return sum;
+	}
+
+	public static boolean searchX(int a[], int x) {
+		Arrays.sort(a);
+		int l = 0, r = a.length - 1;
+		while (l <= r) {
+			int m = l + (r - l) / 2;
+			if (a[m] == x)
+				return true;
+			if (a[m] < x)
+				l = m + 1;
+			else {
+				r = m - 1;
+			}
+		}
+		return false;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n;
+		do {
+			System.out.println("Enter quantity of trees: ");
+			n = sc.nextInt();
+		} while (n < 1 || n > 100);
+		// array: quantity of each trees(negative coordinate)according to its entered
+		// order
+		int an[] = new int[n];
+		// array: quantity of each trees(positive coordinate)according to its entered
+		// order
+		int ap[] = new int[n];
+		// array: negative coordinate
+		int xn[] = new int[n];
+		// array: positive coordinate
+		int xp[] = new int[n];
+		int indexN = 0;
+		int indexP = 0;
+		int x;
+		int a;
+		for (int i = 0; i < n; i++) {
+			do {
+				System.out.println("enter x, a: ");
+				x = sc.nextInt();
+				a = sc.nextInt();
+			} while (x == 0 || x < -100000 || x > 1000000 || a < 0 || a > 1000000 || searchX(xn, x) || searchX(xp, x));
+			if (x < 0) {
+				xn[indexN] = x;
+				an[indexN] = a;
+				indexN++;
+			} else {
+				xp[indexP] = x;
+				ap[indexP] = a;
+				indexP++;
+			}
+		}
+		if (indexN == 0 && indexP != 0) {
+			System.out.println("the max quantity of apples: " + ap[0]);
+		}
+		if (indexP == 0 && indexN != 0) {
+			System.out.println("the max quantity of apples: " + an[0]);
+		}
+		// case indexN == indexP : moving to the left first the same as right => get all
+		// case Math.abs(indexN - indexP) == 1: moving to bigger index first => get all
+		if (indexN == indexP || Math.abs(indexN - indexP) == 1) {
+			System.out.println("the max quantity of apples: " + (total(an, indexN) + total(ap, indexP)));
+		}
+		// this case: moving to the left first
+		if (((indexN - indexP) >= 2) && (indexP != 0)) {
+			System.out.println("the max quantity of apples: " + (total(an, indexP + 1) + total(ap, indexP)));
+		}
+		// this case: moving to the right first
+		if (((indexP - indexN) >= 2) && (indexN != 0)) {
+			System.out.println("the max quantity of apples: " + (total(an, indexN) + total(ap, indexN + 1)));
+		}
+	}
+}
